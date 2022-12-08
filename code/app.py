@@ -13,7 +13,7 @@ import flask_monitoringdashboard as dashboard
 app = Flask(__name__)
 
 # monotoring
-#dashboard.config.init_from(file='config.cfg') #  In order to configure the Dashboard with a configuration-file,
+dashboard.config.init_from(file='config.cfg') #  In order to configure the Dashboard with a configuration-file,
 dashboard.bind(app) # add monotoring
 
 app.config["SESSION_PERMANENT"] = False
@@ -226,6 +226,9 @@ def list_user():
     c.execute("SELECT * FROM user")
     return render_template('list_user.html', roles=c.fetchall())
 
+@app.route('/monotoring/', methods=['GET', 'POST'])
+def monotoring():
+    return render_template('monotoring.html')
     
 
 @app.route('/', methods=['POST', 'GET'])
